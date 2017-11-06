@@ -6,31 +6,56 @@ class Board extends Component {
     super (props);
     this.state = {
       input: 'X',
+      board: [
+      [[],[],[]],
+      [[],[],[]],
+      [[],[],[]]
+    ]
     }
     this.setInput = this.setInput.bind(this);
+    this.handleWin = this.handleWin.bind(this);
   }
 
-  setInput () {
+  setInput (i,j) {
     let next;
     if (this.state.input === 'X') {
       next = 'O';
     } else {
       next = 'X';
     }
+    console.log(this.state.board);
+    let board = this.state.board;
+    board[i][j].push(this.state.input);
+    this.handleWin();
     this.setState({
-      input: next
+      input: next,
+      board: board
     });
   }
 
   handleWin () {
-    let blocks = document.getElementsByClassName('block');
+    let board = this.state.board;
+    let truth = true;
+    board.forEach(row => {
+      console.log(row);
+      if (row[0][0] && row[1][0] && row[2][0] && row[0][0] === row[1][0] && row[0][0] === row[2][0]) {
+        alert( `${this.state.input} Won!`);
+      }
+    });
+    // if (truth) {
+    //   alert(`${this.state.input} Won!`);
+    // }
   }
 
   render () {
     return <div className='board'>
       <div className='container'>
-        {[0,1,2].map(num => {
-          return <Row num={num} key={num} input={this.state.input} setInput={this.setInput}/>
+        {this.state.board.map((row, num) => {
+          return <Row num={num} key={num} 
+          input={this.state.input} 
+          setInput={this.setInput} 
+          row={row}
+          handleWin={this.handleWin}/>
         })}
       </div>
     </div>

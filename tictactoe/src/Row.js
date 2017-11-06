@@ -9,12 +9,14 @@ class Row extends Component {
   render () {
     return <div className={`row ${this.props.num}`} key={this.props.num}>
       {
-        [0,1,2].map(n => {
+        this.props.row.map((block,n) => {
           return <Block num={n}
-          key={n} 
-          row={this.props.num} 
+          key={n}
+          block={block} 
+          row={this.props.num}
           input={this.props.input} 
-          setInput={this.props.setInput}/>
+          setInput={this.props.setInput}
+          handleWin={this.props.handleWin}/>
         })
       }
     </div>

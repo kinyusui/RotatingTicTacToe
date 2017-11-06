@@ -5,7 +5,9 @@ class Block extends Component {
     super (props);
     this.state = {
       can: true,
-      value: ''
+      value: '',
+      row: this.props.row,
+      n: this.props.num
     }
     this.madeMove = this.madeMove.bind(this);
   }
@@ -16,7 +18,7 @@ class Block extends Component {
         value: this.props.input,
         can: false
       })
-      this.props.setInput();
+      this.props.setInput(this.state.row, this.state.n);
     }
   }
   render () {
