@@ -10,7 +10,8 @@ class Block extends Component {
     this.madeMove = this.madeMove.bind(this);
   }
   madeMove (e) {
-    if (e.target.dataset.can) {
+    if (e.target.dataset.can === 'true') {
+      console.log('hello');
       this.setState({
         value: this.props.input,
         can: false
@@ -19,9 +20,8 @@ class Block extends Component {
     }
   }
   render () {
-    let name = 'block ' + this.props.num;
-    return <div className={name}> 
-      <input value={this.state.value} onClick={this.madeMove} data-can={this.state.can}></input>
+    return <div id={`${this.props.row} ${this.props.num}`} className={`block`} key={this.props.n}> 
+      <button className='blocky' value={this.state.value} onClick={this.madeMove} data-can={this.state.can}>{this.state.value}</button>
     </div>
   }
 }

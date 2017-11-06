@@ -30,7 +30,13 @@
 .container {
 
 }
-
 .block {
+ display: inline-block;
+}
+.blocky {
   display: inline-block;
+  border: solid;
+  height: 100px;
+  width: 100px;
+  vertical-align: middle;
 }
