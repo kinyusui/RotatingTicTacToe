@@ -23,6 +23,7 @@ class Board extends Component {
   }
 
   handleWin () {
+    let blocks = document.getElementsByClassName('block');
   }
 
   render () {
