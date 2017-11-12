@@ -16,6 +16,7 @@ class Row extends Component {
           row={this.props.num}
           input={this.props.input} 
           setInput={this.props.setInput}
+          board={this.props.board}
           handleWin={this.props.handleWin}/>
         })
       }

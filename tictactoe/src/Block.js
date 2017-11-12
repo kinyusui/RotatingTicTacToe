@@ -23,7 +23,7 @@ class Block extends Component {
   }
   render () {
     return <div id={`${this.props.row} ${this.props.num}`} className={`block`} key={this.props.n}> 
-      <button className='blocky' value={this.state.value} onClick={this.madeMove} data-can={this.state.can}>{this.state.value}</button>
+      <button className='blocky' value={this.state.value} onClick={this.madeMove} data-can={this.state.can}>{this.props.board[this.props.row][this.props.num][0]}</button>
     </div>
   }
 }

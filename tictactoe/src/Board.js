@@ -26,22 +26,54 @@ class Board extends Component {
     console.log(this.state.board);
     let board = this.state.board;
     board[i][j].push(this.state.input);
-    this.handleWin();
-    this.setState({
-      input: next,
-      board: board
-    });
+    let won = this.handleWin();
+    if (won) {
+      console.log('reseting');
+      this.setState({
+        input: 'X',
+        board: [
+          [[],[],[]],
+          [[],[],[]],
+          [[],[],[]]
+        ]
+      });
+    } else {
+      this.setState({
+        input: next,
+        board: board
+      });
+    }
   }
 
   handleWin () {
     let board = this.state.board;
-    let truth = true;
+    let truth = false;
     board.forEach(row => {
       console.log(row);
       if (row[0][0] && row[1][0] && row[2][0] && row[0][0] === row[1][0] && row[0][0] === row[2][0]) {
         alert( `${this.state.input} Won!`);
+        truth = true;
+        return;
       }
     });
+    if (!truth) {
+      for (var i = 0; i < 3; i++) {
+        if (board[0][i][0] && board[1][i][0] && board[2][i][0] && board[0][i][0] === board[1][i][0] && board[0][i][0] === board[2][i][0]) {
+          alert( `${this.state.input} Won!`);
+          truth = true;
+          return;
+        }
+      }
+    }
+    if (!truth && board[0][0][0] && board[1][1][0] && board[2][2][0] && board[0][0][0] === board[1][1][0] && board[0][0][0] === board[2][2][0]) {
+      alert( `${this.state.input} Won!`);
+      truth = true;
+    }
+    if (!truth && board[0][2][0] && board[1][1][0] && board[2][0][0] && board[0][2][0] === board[1][1][0] && board[0][2][0] === board[2][0][0]) {
+      alert( `${this.state.input} Won!`);
+      truth = true;
+    }
+    return truth;
     // if (truth) {
     //   alert(`${this.state.input} Won!`);
     // }
@@ -55,6 +87,7 @@ class Board extends Component {
           input={this.state.input} 
           setInput={this.setInput} 
           row={row}
+          board={this.state.board}
           handleWin={this.handleWin}/>
         })}
       </div>
