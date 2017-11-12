@@ -27,6 +27,7 @@ class Board extends Component {
     let board = this.state.board;
     board[i][j].push(this.state.input);
     let won = this.handleWin();
+    console.log('won is ', won);
     if (won) {
       console.log('reseting');
       this.setState({
@@ -53,7 +54,7 @@ class Board extends Component {
       if (row[0][0] && row[1][0] && row[2][0] && row[0][0] === row[1][0] && row[0][0] === row[2][0]) {
         alert( `${this.state.input} Won!`);
         truth = true;
-        return;
+        return true;
       }
     });
     if (!truth) {
@@ -61,7 +62,7 @@ class Board extends Component {
         if (board[0][i][0] && board[1][i][0] && board[2][i][0] && board[0][i][0] === board[1][i][0] && board[0][i][0] === board[2][i][0]) {
           alert( `${this.state.input} Won!`);
           truth = true;
-          return;
+          return true;
         }
       }
     }
@@ -72,11 +73,9 @@ class Board extends Component {
     if (!truth && board[0][2][0] && board[1][1][0] && board[2][0][0] && board[0][2][0] === board[1][1][0] && board[0][2][0] === board[2][0][0]) {
       alert( `${this.state.input} Won!`);
       truth = true;
+      return true;
     }
     return truth;
-    // if (truth) {
-    //   alert(`${this.state.input} Won!`);
-    // }
   }
 
   render () {
