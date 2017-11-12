@@ -10,10 +10,22 @@ class Board extends Component {
       [[],[],[]],
       [[],[],[]],
       [[],[],[]]
-    ]
+    ],
+      justWon: false
     }
     this.setInput = this.setInput.bind(this);
     this.handleWin = this.handleWin.bind(this);
+  }
+  componentDidUpdate() {
+    if (this.state.justWon === true) {
+      let blocks = document.querySelectorAll('[data-can]');
+      blocks.forEach(block => {
+        block.setAttribute('data-can','true');
+      });
+      this.setState({
+        justWon: false
+      });
+    }
   }
 
   setInput (i,j) {
@@ -36,7 +48,8 @@ class Board extends Component {
           [[],[],[]],
           [[],[],[]],
           [[],[],[]]
-        ]
+        ],
+        justWon: true
       });
     } else {
       this.setState({
